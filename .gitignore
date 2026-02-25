@@ -1,0 +1,9 @@
+node_modules/
+.env
+.env.local
+dist/
+.DS_Store
+package-lock.json
+data.json
+dashboard/node_modules/
+dashboard/dist/
