@@ -24,7 +24,7 @@ function App() {
   return (
     <div className="card">
       <img
-        src="/logo.png"
+        src="logo.png"
         alt="Ching Logo"
         className="logo"
       />
