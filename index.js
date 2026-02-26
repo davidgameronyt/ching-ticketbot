@@ -18,6 +18,9 @@ const axios = require('axios');
 const app = express();
 const port = process.env.PORT || 3000;
 
+// Statische Dateien aus dem Dashboard/Public Ordner bereitstellen
+app.use('/public', express.static(path.join(__dirname, 'dashboard', 'public')));
+
 const client = new Client({
     intents: [
         GatewayIntentBits.Guilds,

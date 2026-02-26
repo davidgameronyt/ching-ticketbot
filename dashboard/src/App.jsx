@@ -3,8 +3,9 @@ import { UserCheck } from 'lucide-react';
 
 function App() {
   const handleLogin = () => {
-    const clientId = import.meta.env.VITE_DISCORD_CLIENT_ID;
-    const redirectUri = encodeURIComponent(import.meta.env.VITE_DISCORD_REDIRECT_URI);
+    // Fallback auf die IDs aus deiner .env, falls Netlify-Variablen nicht gesetzt sind
+    const clientId = import.meta.env.VITE_DISCORD_CLIENT_ID || '1476009858452033536';
+    const redirectUri = encodeURIComponent(import.meta.env.VITE_DISCORD_REDIRECT_URI || 'http://localhost:3000/api/verify');
     const oauthUrl = `https://discord.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=identify`;
 
     window.location.href = oauthUrl;
@@ -15,7 +16,7 @@ function App() {
     const code = urlParams.get('code');
 
     if (code) {
-      const apiUrl = import.meta.env.VITE_BOT_API_URL; // z.B. https://dein-bot.render.com/api/verify
+      const apiUrl = import.meta.env.VITE_BOT_API_URL || 'http://localhost:3000/api/verify';
       window.location.href = `${apiUrl}?code=${code}`;
     }
   }, []);

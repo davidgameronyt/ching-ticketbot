@@ -54,10 +54,21 @@ Ja, du kannst das Dashboard perfekt auf **Netlify** hosten!
 
 ## 3. Bot Hosting (Das Gehirn)
 
-Der Bot selbst (`index.js`) braucht eine Umgebung, die dauerhaft läuft (Node.js). Netlify kann das **nicht** (da Netlify nur statische Seiten hostet).
-- **Empfehlung**: Nutze **Render.com**, **Railway.app** oder einen eigenen **V-Server**.
-- Dort startest du den Bot einfach mit `node index.js`.
+Wenn du den Bot kostenlos auf deinem eigenen PC laufen lassen willst, ist das kein Problem!
+
+### A. Bot dauerhaft laufen lassen (PM2)
+Damit der Bot nicht ausgeht, wenn du das Terminal schließt, nutze **PM2**:
+1.  Installiere PM2: `npm install pm2 -g`
+2.  Starte den Bot: `pm2 start index.js --name "ching-bot"`
+3.  Der Bot läuft jetzt im Hintergrund. Mit `pm2 logs` siehst du, was passiert.
+
+### B. Lokal-Bot mit Netlify verbinden (ngrok)
+Da dein Dashboard auf Netlify (Internet) liegt, aber dein Bot auf deinem PC (Lokal) ist, können sie standardmäßig nicht sprechen.
+1.  Nutze **[ngrok](https://ngrok.com/)**, um deinen lokalen Port 3000 freizugeben.
+2.  Befehl: `ngrok http 3000`
+3.  Du erhältst eine Adresse wie `https://xyz.ngrok-free.app`.
+4.  Kopiere diese Adresse in deine Netlify-Umgebungsvariable `VITE_BOT_API_URL` (mit `/api/verify` am Ende).
 
 ---
 
-**Status:** Alles bereit für den Einsatz! 🚀
+**Status:** Alles bereit für den Einsatz auf deinem PC! 🚀
